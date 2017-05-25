@@ -27,7 +27,8 @@ public class Tester {
     
     public static void main(String[] args) {
         int N = StdIn.readInt();
-        QuickFindUF uf = new QuickFindUF(N);
+        // QuickFindUF uf = new QuickFindUF(N);
+        edu.princeton.cs.algs4.UF uf = new edu.princeton.cs.algs4.UF(N);
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
