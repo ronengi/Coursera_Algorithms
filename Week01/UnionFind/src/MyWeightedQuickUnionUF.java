@@ -18,7 +18,7 @@
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
  */
-public class WeightedQuickUnionUF implements UF {
+public class MyWeightedQuickUnionUF implements UF {
 
     @SuppressWarnings("FieldMayBeFinal")
     private int[] id;
@@ -28,12 +28,13 @@ public class WeightedQuickUnionUF implements UF {
      * Set id of each object to itself (N array accesses).
      * @param N number of objects
      */
-    public WeightedQuickUnionUF(int N) {
+    public MyWeightedQuickUnionUF(int N) {
         id = new int[N];
         sz = new int[N];
-        for (int i = 0; i < id.length; ++i)
+        for (int i = 0; i < id.length; ++i) {
             id[i] = i;
             sz[i] = 1;
+        }
     }
 
     /**
