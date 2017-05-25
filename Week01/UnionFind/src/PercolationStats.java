@@ -17,7 +17,6 @@
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
-// import edu.princeton.cs.algs4.UF;
 
 
 /**
@@ -33,14 +32,14 @@ public class PercolationStats {
         if (n <= 0 || trials <= 0)
             throw new java.lang.IllegalArgumentException();
         this.thresholds = new double[trials]; 
-        for (int test = 0; test < trials ; ++test) {
+        for (int test = 0; test < trials; ++test) {
             Percolation perc = new Percolation(n);
             while (!perc.percolates()) {
                 int row = StdRandom.uniform(1, n+1);
                 int col = StdRandom.uniform(1, n+1);
                 perc.open(row, col);
             }
-            double fraction = (double)perc.numberOfOpenSites() / (double)(n * n);
+            double fraction = (double) perc.numberOfOpenSites() / (double) (n * n);
             thresholds[test] = fraction;
         }
     }
@@ -69,8 +68,8 @@ public class PercolationStats {
     public static void main(String[] args) {
         if (args.length < 2)
             return;
-        int n = new Integer(args[0]);
-        int trials = new Integer(args[1]);
+        int n = Integer.parseInt(args[0]);
+        int trials = Integer.parseInt(args[1]);
         PercolationStats ps = new PercolationStats(n, trials);
 
         StdOut.println("mean\t\t\t= " + ps.mean());
