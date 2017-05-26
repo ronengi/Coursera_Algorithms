@@ -56,10 +56,14 @@ public class Percolation {
         return this.gridN * this.gridN + 1;
     }
 
+    private void validate(int row, int col) {
+        if (row < 1 || col < 1 || row > this.gridN || col > this.gridN)
+            throw new java.lang.IndexOutOfBoundsException();
+    }
+
     // open site (row, col) if it is not open already
     public void open(int row, int col) {
-        if (row < 1 || col < 1 || row > gridN || col > gridN)
-            throw new java.lang.IndexOutOfBoundsException();
+        validate(row, col);
         if (isOpen(row, col))
             return;
         int p = siteId(row, col);
@@ -72,7 +76,6 @@ public class Percolation {
         if (col > 1 && isOpen(row, col - 1))      uf.union(p, siteId(row, col - 1));
         if (col < gridN && isOpen(row, col + 1))  uf.union(p, siteId(row, col + 1));
 
-
         // connect opened top and bottom rows sites to virtual sites
         if (row == 1)
             uf.union(p, virtualTopSite());     // top row
@@ -80,17 +83,15 @@ public class Percolation {
             uf.union(p, virtualBottomSite());  // bottom row
     }
 
-     // is site (row, col) open?
+    // is site (row, col) open?
     public boolean isOpen(int row, int col) {
-        if (row < 1 || col < 1 || row > gridN || col > gridN)
-            throw new java.lang.IndexOutOfBoundsException();
+        validate(row, col);
         return grid[siteId(row, col)] == 1;
     }
 
     // is site (row, col) full?
     public boolean isFull(int row, int col) {
-        if (row < 1 || col < 1 || row > gridN || col > gridN)
-            throw new java.lang.IndexOutOfBoundsException();
+        validate(row, col);
         if (isOpen(row, col))
             return uf.connected(siteId(row, col), virtualTopSite());
         return false;
@@ -103,19 +104,44 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
+        // int row = this.gridN;
+        // for (int col = 1; col <= gridN; ++col) {
+        //     if (this.isFull(row, col))
+        //         return true;
+        //         uf.union(siteId(row, col), this.virtualBottomSite());
+        // }
+        // return false;
         return uf.connected(virtualTopSite(), virtualBottomSite());
     }
 
 
     public static void main(String[] args) {  // test client (optional)
-        int n = 20;
+        int n = 10;
         Percolation perc = new Percolation(n);
 
-        // perc.open(18, 1);
+        perc.open(1, 10);
+        perc.open(2, 10);
+        perc.open(3, 10);
+        perc.open(4, 10);
+        perc.open(5, 10);
+        perc.open(6, 10);
+        perc.open(7, 10);
+        perc.open(8, 10);
+        perc.open(9, 10);
+        perc.open(10, 10);
+        StdOut.println("percolates:\t" + perc.percolates());
+
+        perc.open(10, 1);
+        StdOut.println("isFull(10, 1):\t" + perc.isFull(10, 1));
+        
+        StdOut.println("find(10, 1):\t" + perc.uf.find(perc.siteId(10, 1)));
+        StdOut.println("find(21):\t" + perc.uf.find(21));
+        StdOut.println("find(101):\t" + perc.uf.find(101));
+
+
+        
         // StdOut.println(perc.isOpen(18, 1));
-        // StdOut.println(perc.percolates());
         // StdOut.println(perc.numberOfOpenSites());
-        // StdOut.println(perc.isFull(18, 1));
         // StdOut.println();
 
 
@@ -125,13 +151,13 @@ public class Percolation {
 //        StdOut.println(perc.isFull(1, 1));
 //        StdOut.println(perc.percolates());
 
-        while (!perc.percolates()) {
-            int row = StdRandom.uniform(1, n+1);
-            int col = StdRandom.uniform(1, n+1);
-            perc.open(row, col);
-        }
-        double fraction = (double) perc.numberOfOpenSites() / (double) (n * n);
-            StdOut.println(fraction);
+//        while (!perc.percolates()) {
+//            int row = StdRandom.uniform(1, n+1);
+//            int col = StdRandom.uniform(1, n+1);
+//            perc.open(row, col);
+//        }
+//        double fraction = (double) perc.numberOfOpenSites() / (double) (n * n);
+//            StdOut.println(fraction);
     }
 
 }
