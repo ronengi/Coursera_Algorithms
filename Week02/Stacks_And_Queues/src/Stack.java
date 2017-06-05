@@ -4,14 +4,22 @@
  * and open the template in the editor.
  */
 
+import java.util.Iterator;
+
 /**
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
+ * @param <Item>
  */
-public interface Stack<Item> {
+public abstract class Stack<Item> implements Iterable<Item> {
+
     // constructor to create am empty stack
-    void push(Item item);
-    Item pop();
-    boolean isEmpty();
-    int size();
+    public abstract void push(Item item);
+    public abstract Item pop();
+    public abstract boolean isEmpty();
+    public abstract int size();
+    
+    @Override
+    public abstract Iterator<Item> iterator(); 
+
 }
