@@ -4,17 +4,22 @@
  * and open the template in the editor.
  */
 
+import java.util.Iterator;
+
 /**
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
  * @param <Item>
  */
-public interface Queue<Item> {
+public abstract class Queue<Item> implements Iterable<Item> {
 
     // constructor()
 
-    void enqueue(Item item);
-    Item dequeue();
-    boolean isEmpty();
-    int size();
+    public abstract void enqueue(Item item);
+    public abstract Item dequeue();
+    public abstract boolean isEmpty();
+    public abstract int size();
+    
+    @Override
+    public abstract Iterator<Item> iterator();
 }
