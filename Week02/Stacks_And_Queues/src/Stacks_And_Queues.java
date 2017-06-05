@@ -11,10 +11,18 @@
 public class Stacks_And_Queues {
 
     /**
+     * Client program. Uses "-" to pop from the stack and print.
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        StackOfStrings stack = new StackOfStrings();
+        while (!StdIn.isEmpty()) {
+            String s = StdIn.readString();
+            if (s.equals("-"))
+                StdOut.print(stack.pop());
+            else
+                stack.push(s);
+        }
     }
     
 }
