@@ -8,12 +8,12 @@
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
  */
-public class LinkedQueueOfStrings {
+public class LinkedQueue<Item> {
     
     private Node first, last;
 
     private class Node {
-        String item;
+        Item item;
         Node next;
     }
 
@@ -21,7 +21,7 @@ public class LinkedQueueOfStrings {
         return first == null;
     }
 
-    public void enqueue(String item) {
+    public void enqueue(Item item) {
         Node oldlast = last;
         last = new Node();
         last.item = item;
@@ -32,8 +32,8 @@ public class LinkedQueueOfStrings {
             oldlast.next = last;
     }
 
-    public String dequeue() {
-        String item = first.item;
+    public Item dequeue() {
+        Item item = first.item;
         first = first.next;
         if (isEmpty())
             last = null;

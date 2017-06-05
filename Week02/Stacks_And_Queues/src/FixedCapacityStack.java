@@ -7,26 +7,27 @@
 /**
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
+ * @param <Item>
  */
-public class FixedCapacityStackOfStrings {
+public class FixedCapacityStack<Item> {
     
-    private String[] s;
+    private Item[] s;
     private int N = 0;
 
-    public FixedCapacityStackOfStrings(int capacity) {
-        s = new String[capacity];
+    public FixedCapacityStack(int capacity) {
+        s = (Item[]) new Object[capacity];  // the ugly cast we must do
     }
 
     public boolean isEmpty() {
         return N == 0;
     }
 
-    public void push(String item) {
+    public void push(Item item) {
         s[N++] = item;
     }
 
-    public String pop() {
-        String item = s[--N];
+    public Item pop() {
+        Item item = s[--N];
         s[N] = null;    // avoid 'loitering', allow the java system to free memory.
         return item;
     }

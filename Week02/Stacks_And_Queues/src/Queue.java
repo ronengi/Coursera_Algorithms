@@ -7,13 +7,14 @@
 /**
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
+ * @param <Item>
  */
-public interface QueueOfStrings {
+public interface Queue<Item> {
 
     // constructor()
 
-    void enqueue(String item);
-    String dequeue();
+    void enqueue(Item item);
+    Item dequeue();
     boolean isEmpty();
     int size();
 }

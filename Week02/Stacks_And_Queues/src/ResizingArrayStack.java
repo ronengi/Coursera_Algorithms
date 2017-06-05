@@ -7,22 +7,23 @@
 /**
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
+ * @param <Item>
  */
-public class ResizingArrayStackOfStrings {
+public class ResizingArrayStack<Item> {
     
-    private String[] s;
+    private Item[] s;
     private int N = 0;
 
 
     private void resize(int capacity) {
-        String[] copy = new String[capacity];
+        Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < N; ++i)
             copy[i] = s[i];
         s = copy;
     }
 
-    public ResizingArrayStackOfStrings() {
-        s = new String[1];
+    public ResizingArrayStack() {
+        s = (Item[]) new Object[1];
     }
 
     public boolean isEmpty() {
@@ -33,7 +34,7 @@ public class ResizingArrayStackOfStrings {
      * If array is full, resize it to double its current size.
      * @param item 
      */
-    public void push(String item) {
+    public void push(Item item) {
         if (N == s.length)
             resize(2 * s.length);
         s[N++] = item;
@@ -44,8 +45,8 @@ public class ResizingArrayStackOfStrings {
      * Avoid 'loitering', allow the java system to free memory. 
      * @return 
      */
-    public String pop() {
-        String item = s[--N];
+    public Item pop() {
+        Item item = s[--N];
         s[N] = null;
         if (N > 0 && N == s.length / 4)
             resize(s.length / 2);

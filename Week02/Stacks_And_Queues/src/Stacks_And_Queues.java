@@ -15,7 +15,7 @@ public class Stacks_And_Queues {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        StackOfStrings stack = new StackOfStrings();
+        Stack stack = new Stack();
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();
             if (s.equals("-"))

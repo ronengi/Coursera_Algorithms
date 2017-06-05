@@ -8,10 +8,10 @@
  *
  * @author Ronen Gilead-Raz <ronengi@gmail.com>
  */
-public interface StackOfStrings {
+public interface Stack<Item> {
     // constructor to create am empty stack
-    void push(String item);
-    String pop();
+    void push(Item item);
+    Item pop();
     boolean isEmpty();
     int size();
 }
