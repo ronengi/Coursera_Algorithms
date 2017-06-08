@@ -137,7 +137,7 @@ public class Deque<Item> implements Iterable<Item> {
     // unit testing (optional)
     public static void main(String[] args) throws FileNotFoundException {
 
-        FileInputStream is = new FileInputStream(new File("input.txt"));
+        FileInputStream is = new FileInputStream(new File("Deque.text"));
         System.setIn(is);
 
         

@@ -15,51 +15,51 @@ import java.util.NoSuchElementException;
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
-    private Item[] rq;
-    private int N;
+    private Item[] rdmqu;
+    private int rdmquN;
     
     // construct an empty randomized queue   
     public RandomizedQueue() {
-        rq = (Item[]) new Object[1];
-        N = 0;
+        rdmqu = (Item[]) new Object[1];
+        rdmquN = 0;
     }
 
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < N; ++i)
-            copy[i] = rq[i];
-        rq = copy;
+        for (int i = 0; i < rdmquN; ++i)
+            copy[i] = rdmqu[i];
+        rdmqu = copy;
     }
     
     // is the queue empty?
     public boolean isEmpty() {
-        return N == 0;
+        return rdmquN == 0;
     }
 
     // return the number of items on the queue
     public int size() {
-        return N;
+        return rdmquN;
     }
 
     // add the item
     public void enqueue(Item item) {
         if (item == null)
             throw new NullPointerException("Adding null item is not allowed here.");
-        if (N == rq.length)
-            resize(2 * rq.length);
-        rq[N++] = item;
+        if (rdmquN == rdmqu.length)
+            resize(2 * rdmqu.length);
+        rdmqu[rdmquN++] = item;
     }
 
     // remove and return a random item
     public Item dequeue() {
         if (isEmpty())
             throw new NoSuchElementException("Tried to remove an item from empty queue.");
-        int r = StdRandom.uniform(N);
-        Item item = rq[r];
-        rq[r] = rq[--N];
-        rq[N] = null;
-        if (N > 0 && N == rq.length / 4)
-            resize(rq.length / 2);
+        int r = StdRandom.uniform(rdmquN);
+        Item item = rdmqu[r];
+        rdmqu[r] = rdmqu[--rdmquN];
+        rdmqu[rdmquN] = null;
+        if (rdmquN > 0 && rdmquN == rdmqu.length / 4)
+            resize(rdmqu.length / 2);
         return item;
     }
 
@@ -67,8 +67,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item sample() {
         if (isEmpty())
             throw new NoSuchElementException("Tried to sample an item from empty queue.");
-        int r = StdRandom.uniform(N);
-        Item item = rq[r];
+        int r = StdRandom.uniform(rdmquN);
+        Item item = rdmqu[r];
         return item;
     }
 
@@ -80,29 +80,29 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
 
     public class RQIterator implements Iterator<Item> {
-        private Item[] rqi;
-        private int Ni;
+        private Item[] rdmquitr;
+        private int rdmquitrN;
 
         public RQIterator() {
-             rqi = (Item[]) new Object[N];
-             Ni = N;
-             for (int i = 0; i < Ni; ++i)
-                 rqi[i] = rq[i];
+             rdmquitr = (Item[]) new Object[rdmquN];
+             rdmquitrN = rdmquN;
+             for (int i = 0; i < rdmquitrN; ++i)
+                 rdmquitr[i] = rdmqu[i];
         }
         
         @Override
         public boolean hasNext() {
-            return Ni > 0;
+            return rdmquitrN > 0;
         }
 
         @Override
         public Item next() {
-            if (Ni == 0)
+            if (rdmquitrN == 0)
                 throw new NoSuchElementException("Called next() on iterator which has no more elements to return.");
-            int r = StdRandom.uniform(Ni);
-            Item item = rqi[r];
-            rqi[r] = rqi[--Ni];
-            rqi[Ni] = null;
+            int r = StdRandom.uniform(rdmquitrN);
+            Item item = rdmquitr[r];
+            rdmquitr[r] = rdmquitr[--rdmquitrN];
+            rdmquitr[rdmquitrN] = null;
             return item;
         }
 
@@ -116,7 +116,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
 // unit testing (optional)
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream is = new FileInputStream(new File("input2.txt"));
+        FileInputStream is = new FileInputStream(new File("RandomizedQueue.text"));
         System.setIn(is);
         
         RandomizedQueue<Integer> rdq = new RandomizedQueue<>();
