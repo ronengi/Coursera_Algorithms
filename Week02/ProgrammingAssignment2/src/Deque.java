@@ -12,12 +12,13 @@ import edu.princeton.cs.algs4.StdOut;
 public class Deque<Item> implements Iterable<Item> {
 
     private Node first, last;
-    private int DQSize;
+    private int dqSize;
     
     // construct an empty deque
     public Deque() {
-        first = last = null;
-        DQSize = 0;
+        first = null;
+        last = null;
+        dqSize = 0;
     }
 
     // is the deque empty?
@@ -27,39 +28,39 @@ public class Deque<Item> implements Iterable<Item> {
 
     // return the number of items on the deque
     public int size() {
-        return DQSize;
+        return dqSize;
     }
 
     // add the item to the front
     public void addFirst(Item item) {
         if (item == null)
                 throw new NullPointerException("null items are not allowed here.");
-        Node Oldfirst = first;
+        Node oldFirst = first;
         first = new Node();
         first.item = item;
         first.prev = null;
-        first.next = Oldfirst;
-        if (Oldfirst == null)
+        first.next = oldFirst;
+        if (oldFirst == null)
             last = first;
         else
-            Oldfirst.prev = first;
-        DQSize++;
+            oldFirst.prev = first;
+        dqSize++;
     }
 
     // add the item to the end
     public void addLast(Item item) {
         if (item == null)
                 throw new NullPointerException("null items are not allowed here.");
-        Node Oldlast = last;
+        Node oldLast = last;
         last = new Node();
         last.item = item;
         last.next = null;
-        last.prev = Oldlast;
-        if (Oldlast == null)
+        last.prev = oldLast;
+        if (oldLast == null)
             first = last;
         else
-            Oldlast.next = last;
-        DQSize++;
+            oldLast.next = last;
+        dqSize++;
     }
 
     // remove and return the item from the front
@@ -72,7 +73,7 @@ public class Deque<Item> implements Iterable<Item> {
             last = null;
         else
             first.prev = null;
-        DQSize--;
+        dqSize--;
         return item;
     }
     
@@ -86,7 +87,7 @@ public class Deque<Item> implements Iterable<Item> {
             first = null;
         else
             last.next = null;
-        DQSize--;
+        dqSize--;
         return item;
     }
 
@@ -105,7 +106,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
 
-    public class DQIterator implements Iterator<Item> {
+    private class DQIterator implements Iterator<Item> {
         private Node current = first;
 
         @Override
