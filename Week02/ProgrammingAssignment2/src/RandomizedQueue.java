@@ -1,9 +1,6 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -115,9 +112,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     
 // unit testing (optional)
-    public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream is = new FileInputStream(new File("RandomizedQueue.text"));
-        System.setIn(is);
+    public static void main(String[] args) {
         
         RandomizedQueue<Integer> rdq = new RandomizedQueue<>();
 

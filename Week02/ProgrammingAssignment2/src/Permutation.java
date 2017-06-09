@@ -1,8 +1,5 @@
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 /**
  *
@@ -10,11 +7,9 @@ import java.io.FileNotFoundException;
  */
 public class Permutation {
     
-    public static  void main(String[] args) throws FileNotFoundException {
-        FileInputStream is = new FileInputStream(new File("Permutation.text"));
-        System.setIn(is);
+    public static  void main(String[] args) {
+        int k = Integer.parseInt(args[0]);
 
-        int k = StdIn.readInt();
         RandomizedQueue<String> rdq = new RandomizedQueue<>();
         while (!StdIn.isEmpty())
             rdq.enqueue(StdIn.readString());

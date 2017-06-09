@@ -1,12 +1,7 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 
 /**
@@ -135,12 +130,8 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     // unit testing (optional)
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
-        FileInputStream is = new FileInputStream(new File("Deque.text"));
-        System.setIn(is);
-
-        
         Deque<String> dq = new Deque<>();
         
         while (!StdIn.isEmpty()) {
